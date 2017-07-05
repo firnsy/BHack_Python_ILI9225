@@ -175,69 +175,69 @@ class ILI9225(object):
         # be overridden by other displays in the future.
 
         # set SS bit and direction output from S528 to S1
-        self.command(ILI9225_POWER_CTRL1).data(0x00, 0x00); # set SAP,DSTB,STB
-        self.command(ILI9225_POWER_CTRL2).data(0x00, 0x00); # set APON,PON,AON,VCI1EN,VC
-        self.command(ILI9225_POWER_CTRL3).data(0x00, 0x00); # set BT,DC1,DC2,DC3
-        self.command(ILI9225_POWER_CTRL4).data(0x00, 0x00); # set GVDD
-        self.command(ILI9225_POWER_CTRL5).data(0x00, 0x00); # set VCOMH/VCOML voltage
+        self.command(ILI9225_POWER_CTRL1).data([0x00, 0x00]); # set SAP,DSTB,STB
+        self.command(ILI9225_POWER_CTRL2).data([0x00, 0x00]); # set APON,PON,AON,VCI1EN,VC
+        self.command(ILI9225_POWER_CTRL3).data([0x00, 0x00]); # set BT,DC1,DC2,DC3
+        self.command(ILI9225_POWER_CTRL4).data([0x00, 0x00]); # set GVDD
+        self.command(ILI9225_POWER_CTRL5).data([0x00, 0x00]); # set VCOMH/VCOML voltage
         time.sleep(0.04);
 
         # power-on sequence
-        self.command(ILI9225_POWER_CTRL2).data(0x00, 0x18); # set APON, PON, AON, VCI1EN, VC
-        self.command(ILI9225_POWER_CTRL3).data(0x61, 0x21); # set BT, DC1, DC2, DC3
-        self.command(ILI9225_POWER_CTRL4).data(0x00, 0x6F); # set GVDD   /*007F 0088 */
-        self.command(ILI9225_POWER_CTRL5).data(0x49, 0x5F); # set VCOMH/VCOML voltage
-        self.command(ILI9225_POWER_CTRL1).data(0x08, 0x00); # set SAP, DSTB, STB
+        self.command(ILI9225_POWER_CTRL2).data([0x00, 0x18]); # set APON, PON, AON, VCI1EN, VC
+        self.command(ILI9225_POWER_CTRL3).data([0x61, 0x21]); # set BT, DC1, DC2, DC3
+        self.command(ILI9225_POWER_CTRL4).data([0x00, 0x6F]); # set GVDD   /*007F 0088 */
+        self.command(ILI9225_POWER_CTRL5).data([0x49, 0x5F]); # set VCOMH/VCOML voltage
+        self.command(ILI9225_POWER_CTRL1).data([0x08, 0x00]); # set SAP, DSTB, STB
         time.sleep(0.01);
-        self.command(ILI9225_POWER_CTRL2).data(0x10, 0x3B); # set APON, PON, AON, VCI1EN, VC
+        self.command(ILI9225_POWER_CTRL2).data([0x10, 0x3B]); # set APON, PON, AON, VCI1EN, VC
         time.sleep(0.05);
 
-        self.command(ILI9225_DRIVER_OUTPUT_CTRL).data(0x01, 0x1C);  # set the display line number and display direction
-        self.command(ILI9225_LCD_AC_DRIVING_CTRL).data(0x01, 0x00); # set 1 line inversion
-        self.command(ILI9225_ENTRY_MODE).data(0x10, 0x30);          # set GRAM write direction and BGR=1.
-        self.command(ILI9225_DISP_CTRL1).data(0x00, 0x00);          # Display off
-        self.command(ILI9225_BLANK_PERIOD_CTRL1).data( 0x08, 0x08); # set the back porch and front porch
-        self.command(ILI9225_FRAME_CYCLE_CTRL).data(0x11, 0x00);    # set the clocks number per line
-        self.command(ILI9225_INTERFACE_CTRL).data(0x00, 0x00);      # CPU interface
-        self.command(ILI9225_OSC_CTRL).data(0x0D, 0x01);            # set Osc  /*0e01*/
-        self.command(ILI9225_VCI_RECYCLING).data(0x00, 0x20);       # set VCI recycling
-        self.command(ILI9225_RAM_ADDR_SET1).data(0x00, 0x00);       # RAM Address
-        self.command(ILI9225_RAM_ADDR_SET2).data(0x00, 0x00);       # RAM Address
+        self.command(ILI9225_DRIVER_OUTPUT_CTRL).data([0x01, 0x1C]);  # set the display line number and display direction
+        self.command(ILI9225_LCD_AC_DRIVING_CTRL).data([0x01, 0x00]); # set 1 line inversion
+        self.command(ILI9225_ENTRY_MODE).data([0x10, 0x30]);          # set GRAM write direction and BGR=1.
+        self.command(ILI9225_DISP_CTRL1).data([0x00, 0x00]);          # Display off
+        self.command(ILI9225_BLANK_PERIOD_CTRL1).data([0x08, 0x08]); # set the back porch and front porch
+        self.command(ILI9225_FRAME_CYCLE_CTRL).data([0x11, 0x00]);    # set the clocks number per line
+        self.command(ILI9225_INTERFACE_CTRL).data([0x00, 0x00]);      # CPU interface
+        self.command(ILI9225_OSC_CTRL).data([0x0D, 0x01]);            # set Osc  /*0e01*/
+        self.command(ILI9225_VCI_RECYCLING).data([0x00, 0x20]);       # set VCI recycling
+        self.command(ILI9225_RAM_ADDR_SET1).data([0x00, 0x00]);       # RAM Address
+        self.command(ILI9225_RAM_ADDR_SET2).data([0x00, 0x00]);       # RAM Address
 
         # get GRAM area
-        self.command(ILI9225_GATE_SCAN_CTRL).data(0x00, 0x00);
-        self.command(ILI9225_VERTICAL_SCROLL_CTRL1).data(0x00, 0xDB);
-        self.command(ILI9225_VERTICAL_SCROLL_CTRL2).data(0x00, 0x00);
-        self.command(ILI9225_VERTICAL_SCROLL_CTRL3).data(0x00, 0x00);
-        self.command(ILI9225_PARTIAL_DRIVING_POS1).data(0x00, 0xDB);
-        self.command(ILI9225_PARTIAL_DRIVING_POS2).data(0x00, 0x00);
-        self.command(ILI9225_HORIZONTAL_WINDOW_ADDR1).data(0x00, 0xAF);
-        self.command(ILI9225_HORIZONTAL_WINDOW_ADDR2).data(0x00, 0x00);
-        self.command(ILI9225_VERTICAL_WINDOW_ADDR1).data(0x00, 0xDB);
-        self.command(ILI9225_VERTICAL_WINDOW_ADDR2).data(0x00, 0x00);
+        self.command(ILI9225_GATE_SCAN_CTRL).data([0x00, 0x00]);
+        self.command(ILI9225_VERTICAL_SCROLL_CTRL1).data([0x00, 0xDB]);
+        self.command(ILI9225_VERTICAL_SCROLL_CTRL2).data([0x00, 0x00]);
+        self.command(ILI9225_VERTICAL_SCROLL_CTRL3).data([0x00, 0x00]);
+        self.command(ILI9225_PARTIAL_DRIVING_POS1).data([0x00, 0xDB]);
+        self.command(ILI9225_PARTIAL_DRIVING_POS2).data([0x00, 0x00]);
+        self.command(ILI9225_HORIZONTAL_WINDOW_ADDR1).data([0x00, 0xAF]);
+        self.command(ILI9225_HORIZONTAL_WINDOW_ADDR2).data([0x00, 0x00]);
+        self.command(ILI9225_VERTICAL_WINDOW_ADDR1).data([0x00, 0xDB]);
+        self.command(ILI9225_VERTICAL_WINDOW_ADDR2).data([0x00, 0x00]);
 
         # set GAMMA curve
-        self.command(ILI9225_GAMMA_CTRL1).data(0x00, 0x00);
-        self.command(ILI9225_GAMMA_CTRL2).data(0x08, 0x08);
-        self.command(ILI9225_GAMMA_CTRL3).data(0x08, 0x0A);
-        self.command(ILI9225_GAMMA_CTRL4).data(0x00, 0x0A);
-        self.command(ILI9225_GAMMA_CTRL5).data(0x0A, 0x08);
-        self.command(ILI9225_GAMMA_CTRL6).data(0x08, 0x08);
-        self.command(ILI9225_GAMMA_CTRL7).data(0x00, 0x00);
-        self.command(ILI9225_GAMMA_CTRL8).data(0x0A, 0x00);
-        self.command(ILI9225_GAMMA_CTRL9).data(0x07, 0x10);
-        self.command(ILI9225_GAMMA_CTRL10).data(0x07, 0x10);
+        self.command(ILI9225_GAMMA_CTRL1).data([0x00, 0x00]);
+        self.command(ILI9225_GAMMA_CTRL2).data([0x08, 0x08]);
+        self.command(ILI9225_GAMMA_CTRL3).data([0x08, 0x0A]);
+        self.command(ILI9225_GAMMA_CTRL4).data([0x00, 0x0A]);
+        self.command(ILI9225_GAMMA_CTRL5).data([0x0A, 0x08]);
+        self.command(ILI9225_GAMMA_CTRL6).data([0x08, 0x08]);
+        self.command(ILI9225_GAMMA_CTRL7).data([0x00, 0x00]);
+        self.command(ILI9225_GAMMA_CTRL8).data([0x0A, 0x00]);
+        self.command(ILI9225_GAMMA_CTRL9).data([0x07, 0x10]);
+        self.command(ILI9225_GAMMA_CTRL10).data([0x07, 0x10]);
 
-        self.command(ILI9225_DISP_CTRL1).data(0x00, 0x12);
+        self.command(ILI9225_DISP_CTRL1).data([0x00, 0x12]);
         time.sleep(0.05);
-        self.command(ILI9225_DISP_CTRL1).data(0x10, 0x17);
+        self.command(ILI9225_DISP_CTRL1).data([0x10, 0x17]);
 
  #       setBacklight(true);
  #       setOrientation(0);
 
  #       setBackgroundColor( COLOR_BLACK );
 
-        clear();
+        self.clear();
 
     def begin(self):
         """Initialize the display.  Should be called once before other calls that
@@ -253,21 +253,35 @@ class ILI9225(object):
         are specified the default will be to update the entire display from 0,0
         to 239,319.
         """
+
         if x1 is None:
             x1 = self.width-1
         if y1 is None:
             y1 = self.height-1
-        self.command(ILI9225_CASET)        # Column addr set
-        self.data(x0 >> 8)
-        self.data(x0)                    # XSTART
-        self.data(x1 >> 8)
-        self.data(x1)                    # XEND
-        self.command(ILI9225_PASET)        # Row addr set
-        self.data(y0 >> 8)
-        self.data(y0)                    # YSTART
-        self.data(y1 >> 8)
-        self.data(y1)                    # YEND
-        self.command(ILI9225_RAMWR)        # write to RAM
+
+#        self.command(ILI9225_CASET)        # Column addr set
+#        self.data(x0 >> 8)
+#        self.data(x0)                    # XSTART
+#        self.data(x1 >> 8)
+#        self.data(x1)                    # XEND
+#        self.command(ILI9225_PASET)        # Row addr set
+#        self.data(y0 >> 8)
+#        self.data(y0)                    # YSTART
+#        self.data(y1 >> 8)
+#        self.data(y1)                    # YEND
+#
+#       self.command(ILI9225_RAMWR)        # write to RAM
+
+	self.command(ILI9225_HORIZONTAL_WINDOW_ADDR1).data(x1);
+	self.command(ILI9225_HORIZONTAL_WINDOW_ADDR2).data(x0);
+
+	self.command(ILI9225_VERTICAL_WINDOW_ADDR1).data(y1);
+	self.command(ILI9225_VERTICAL_WINDOW_ADDR2).data(y0);
+
+	self.command(ILI9225_RAM_ADDR_SET1).data(x0);
+	self.command(ILI9225_RAM_ADDR_SET2).data(y0);
+
+	self.command([0x00, 0x22]);
 
     def display(self, image=None):
         """Write the display buffer or provided image to the hardware.  If no
