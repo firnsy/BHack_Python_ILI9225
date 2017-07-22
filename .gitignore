@@ -1,0 +1,8 @@
+# python artefacts
+*.pyc
+
+# python egg artefacts
+BHack_ILI9225.egg-info
+build
+dist
+
