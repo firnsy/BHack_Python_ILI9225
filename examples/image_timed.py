@@ -17,28 +17,26 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
+# THE SOFTWARE.# Fixed by SwetyCore
 from PIL import Image
-import time
-import BHack_ILI9225 as TFT
-import Adafruit_GPIO as GPIO
-import Adafruit_GPIO.SPI as SPI
 
+import BHack_ILI9225 as TFT
+from busio import SPI
+import board
 
 # Raspberry Pi configuration.
-RS = 18
-RST = 23
-SPI_PORT = 0
-SPI_DEVICE = 0
+RS = board.D19
+RST =board.D26
 
 # BeagleBone Black configuration.
-#RS = 'P9_15'
-#RST = 'P9_12'
-#SPI_PORT = 1
-#SPI_DEVICE = 0
+# RS = 'P9_15'
+# RST = 'P9_12'
+# SPI_PORT = 1
+# SPI_DEVICE = 0
 
 # Create TFT LCD display class.
-disp = TFT.ILI9225(RS, rst=RST, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=64000000))
+spi = SPI(board.SCLK, board.MOSI, board.MISO)
+disp = TFT.ILI9225(RS, rst=RST, spi=spi)
 
 # Initialize display.
 disp.begin()
