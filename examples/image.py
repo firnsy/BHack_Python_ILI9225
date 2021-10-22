@@ -48,7 +48,7 @@ print('Loading image...')
 image = Image.open('bhack.jpg')
 
 # Resize the image and rotate it so it's 176x220 pixels.
-image = image.rotate(90).resize((176, 220))
+image = image.transpose(Image.ROTATE_90).resize((176, 220))
 
 # Draw the image on the display hardware.
 print('Drawing image')
